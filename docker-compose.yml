@@ -1,0 +1,33 @@
+version: "3"
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  redirect-groot:    
+    container_name: redirect-groot
+    privileged: true
+    image: rgrott
+    networks:
+      sorj_iot:
+        ipv4_address: 172.18.5.3
+      sorj_groot:
+        ipv4_address: 192.168.90.3
+    environment:
+      TZ: 'America/Sao_Paulo'
+      PUID: 1000
+      PGID: 1000
+      DEBUG_IPTABLES: false
+      DPORT: 5279
+      DIP: 172.18.5.114
+    cap_add:
+      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+      - NET_RAW
+    restart: unless-stopped
+networks:
+  sorj_iot:
+    external: true
+  sorj_groot:
+    external: true
+
+
+
+ 
