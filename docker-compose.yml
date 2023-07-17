@@ -1,6 +1,5 @@
 version: "3"
 
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
   redirect-groot:    
     container_name: redirect-groot
@@ -19,7 +18,7 @@ services:
       DPORT: 5279
       DIP: 172.18.5.114
     cap_add:
-      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+      - NET_ADMIN
       - NET_RAW
     restart: unless-stopped
 networks:
